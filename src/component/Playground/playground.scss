@@ -4,11 +4,15 @@
 }
 
 .editor {
-  width: 50%;
+  height: 98vh;
+  width: 100%;
   padding: 0;
 }
 
 .preview {
-  width: 50%;
+  height: 98vh;
+  max-height: 100%;
+  overflow-y: scroll;
+  width: 100%;
   padding: 0;
 }

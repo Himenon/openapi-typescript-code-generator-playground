@@ -1233,10 +1233,10 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@himenon/openapi-typescript-code-generator@0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@himenon/openapi-typescript-code-generator/-/openapi-typescript-code-generator-0.1.2.tgz#63f25adedd05345f0cd6483305682447e2ea65d4"
-  integrity sha512-u9LBLdzfDBcYC310kseMgPWL2Obc4I3AQ+d84uoRB9ypYU2a4Ig9FYUAIqRONRb5Cbvbax84GehyOHmvy2ACcQ==
+"@himenon/openapi-typescript-code-generator@0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@himenon/openapi-typescript-code-generator/-/openapi-typescript-code-generator-0.1.4.tgz#3648b3ad80749cf2c81fd88cf3c1b0302402b93c"
+  integrity sha512-6CKy0cPQ/2Fr/XH0D55mMxLis5IuznAM40g5PJhC3thZVO1iCUGfxFAVlbOLCuMTSyvze4m/+ForoW+ynMVOgw==
   dependencies:
     "@types/json-schema" "7.0.6"
     ajv "7.0.3"

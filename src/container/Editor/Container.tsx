@@ -5,7 +5,7 @@ export const generateProps = (store: Store): Editor.Props => {
   return {
     editor: {
       width: "100%",
-      height: "600",
+      height: "98vh",
       language: "yaml",
       value: store.inputCode,
       theme: "vs-dark",

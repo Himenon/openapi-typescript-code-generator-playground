@@ -3,6 +3,8 @@ import { LiveProvider, LiveEditor } from "react-live";
 import * as ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import dracula from 'prism-react-renderer/themes/dracula';
 
+const classNames = require("./preview.scss");
+
 type ElementProps = JSX.IntrinsicElements["div"];
 
 export interface Props extends ElementProps {
@@ -20,7 +22,7 @@ export const Component = ({ code, transformCode, scope, ...props }: Props) => {
     <div {...props}>
       <ErrorBoundary.Component>
         <LiveProvider code={code} scope={scope} noInline={true} theme={dracula} >
-          <div style={{ padding: "10px", marginBottom: "1em" }}>
+          <div className={classNames.liveEditor}>
             <LiveEditor readOnly={false} code={tsCode} language="typescript" />
           </div>
         </LiveProvider>
