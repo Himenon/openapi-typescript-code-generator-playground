@@ -41,7 +41,7 @@
   "dependencies": {
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "@himenon/openapi-typescript-code-generator": "0.1.4",
+    "@himenon/openapi-typescript-code-generator": "0.1.5",
     "@rebass/emotion": "3.2.0",
     "acorn": "7.2.0",
     "acorn-jsx": "5.2.0",

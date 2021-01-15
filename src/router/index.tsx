@@ -6,7 +6,7 @@ export const AppRouter = () => {
   return (
     <Router>
       <nav>
-        <h1 id="site-title">Playground - @himenon/openapi-typescript-code-generator@0.1.4</h1>
+        <h1 id="site-title">Playground - @himenon/openapi-typescript-code-generator@0.1.5</h1>
       </nav>
       <Switch>
         <Route path="/">
