@@ -1,9 +1,11 @@
 import { EOL } from "os";
-import * as TypeScriptCodeGenerator from "@himenon/openapi-typescript-code-generator/$cjs/CodeGenerator";
-import * as Converter from "@himenon/openapi-typescript-code-generator/$cjs/Converter";
-import * as DefaultCodeTemplate from "@himenon/openapi-typescript-code-generator/$cjs/DefaultCodeTemplate";
-import * as ResolveReference from "@himenon/openapi-typescript-code-generator/$cjs/ResolveReference";
-import * as Validator from "@himenon/openapi-typescript-code-generator/$cjs/Validator";
+import {
+  Converter,
+  TypeScriptCodeGenerator,
+  Validator,
+  ResolveReference,
+  DefaultCodeTemplate,
+} from "@himenon/openapi-typescript-code-generator/api";
 import * as yaml from "js-yaml";
 
 export interface Params {
@@ -25,8 +27,14 @@ const generateTypeScriptCode = ({ schema, entryPoint, option, enableValidate = t
   }
 
   const convertOption: Converter.v3.Option = option
-    ? { makeApiClient: option.makeApiClient || DefaultCodeTemplate.makeClientApiClient }
-    : { makeApiClient: DefaultCodeTemplate.makeClientApiClient };
+    ? {
+        rewriteCodeAfterTypeDeclaration: option.rewriteCodeAfterTypeDeclaration || DefaultCodeTemplate.rewriteCodeAfterTypeDeclaration,
+        codeGeneratorOption: option.codeGeneratorOption || { sync: false },
+      }
+    : {
+        rewriteCodeAfterTypeDeclaration: DefaultCodeTemplate.rewriteCodeAfterTypeDeclaration,
+        codeGeneratorOption: { sync: false },
+      };
   const { createFunction, generateLeadingComment } = Converter.v3.create(entryPoint, schema, resolvedReferenceDocument, convertOption);
   return [generateLeadingComment(), TypeScriptCodeGenerator.generate(createFunction)].join(EOL + EOL + EOL);
 };
