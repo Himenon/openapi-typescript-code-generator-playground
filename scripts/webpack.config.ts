@@ -12,7 +12,7 @@ const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+// const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const rootPath = path.resolve(__dirname, "../");
@@ -131,7 +131,7 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       }),
       isProduction && !isCI && new BundleAnalyzerPlugin(),
       new ProgressBarPlugin(),
-      new FriendlyErrorsWebpackPlugin(),
+      // new FriendlyErrorsWebpackPlugin(),
       new WebpackNotifierPlugin(),
       new ForkTsCheckerWebpackPlugin(),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
