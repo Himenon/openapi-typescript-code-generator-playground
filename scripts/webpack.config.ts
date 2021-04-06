@@ -5,21 +5,21 @@ import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+// import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
-const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-// const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
 
+const pkg = require("../package.json");
+const GENERATOR_VERSION = pkg.dependencies["@himenon/openapi-typescript-code-generator"];
+
 export const generateConfig = (isProduction: boolean): webpack.Configuration => {
-  const isCI = process.env.CI;
+  // const isCI = process.env.CI;
 
   // const babelLoader: webpack.RuleSetUse = {
   //   loader: "babel-loader",
@@ -129,10 +129,8 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new MonacoWebpackPlugin({
         languages: ["json", "typescript", "yaml"],
       }),
-      isProduction && !isCI && new BundleAnalyzerPlugin(),
-      new ProgressBarPlugin(),
+      // isProduction && !isCI && new BundleAnalyzerPlugin(),
       // new FriendlyErrorsWebpackPlugin(),
-      new WebpackNotifierPlugin(),
       new ForkTsCheckerWebpackPlugin(),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
       new webpack.HotModuleReplacementPlugin(),
@@ -150,6 +148,9 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new webpack.ProvidePlugin({
         process: "process",
       }),
+      new webpack.DefinePlugin({
+        "process.env.GENERATOR_VERSION":`"${GENERATOR_VERSION}"`,
+      })
     ].filter(Boolean),
     output: {
       filename: "scripts/[name].bundle.js",
