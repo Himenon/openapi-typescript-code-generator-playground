@@ -18,6 +18,9 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const rootPath = path.resolve(__dirname, "../");
 const appPath = (nextPath: string) => path.join(rootPath, nextPath);
 
+const pkg = require("../package.json");
+const GENERATOR_VERSION = pkg.dependencies["@himenon/openapi-typescript-code-generator"];
+
 export const generateConfig = (isProduction: boolean): webpack.Configuration => {
   const isCI = process.env.CI;
 
@@ -150,6 +153,9 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       new webpack.ProvidePlugin({
         process: "process",
       }),
+      new webpack.DefinePlugin({
+        "process.env.GENERATOR_VERSION":`"${GENERATOR_VERSION}"`,
+      })
     ].filter(Boolean),
     output: {
       filename: "scripts/[name].bundle.js",
