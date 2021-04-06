@@ -2,17 +2,17 @@ import webpack from "webpack";
 import * as path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import ManifestPlugin from "webpack-manifest-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const WebpackNotifierPlugin = require("webpack-notifier");
 const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+// const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 const rootPath = path.resolve(__dirname, "../");
@@ -20,21 +20,14 @@ const appPath = (nextPath: string) => path.join(rootPath, nextPath);
 
 export const generateConfig = (isProduction: boolean): webpack.Configuration => {
   const isCI = process.env.CI;
-  const tsLoader: webpack.RuleSetUse = {
-    loader: "ts-loader",
-    options: {
-      configFile: "tsconfig.json",
-      transpileOnly: true,
-    },
-  };
 
-  const babelLoader: webpack.RuleSetUse = {
-    loader: "babel-loader",
-    options: {
-      cacheDirectory: true,
-      presets: ["@babel/preset-env"],
-    },
-  };
+  // const babelLoader: webpack.RuleSetUse = {
+  //   loader: "babel-loader",
+  // options: {
+  //   cacheDirectory: true,
+  //   presets: ["@babel/preset-env"],
+  // },
+  // };
 
   const cssLoaders: webpack.RuleSetUse = [
     {
@@ -71,6 +64,9 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
   return {
     mode: isProduction ? "production" : "development",
     target: "web",
+    stats: {
+      errorDetails: true,
+    },
     optimization: {
       minimize: isProduction,
       runtimeChunk: false,
@@ -135,7 +131,7 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
       }),
       isProduction && !isCI && new BundleAnalyzerPlugin(),
       new ProgressBarPlugin(),
-      new FriendlyErrorsWebpackPlugin(),
+      // new FriendlyErrorsWebpackPlugin(),
       new WebpackNotifierPlugin(),
       new ForkTsCheckerWebpackPlugin(),
       new ForkTsCheckerNotifierWebpackPlugin({ excludeWarnings: true }),
@@ -150,7 +146,10 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         title: isProduction ? "Production" : "Development",
         template: "public/index.html",
       }),
-      new ManifestPlugin(),
+      new WebpackManifestPlugin(),
+      new webpack.ProvidePlugin({
+        process: "process",
+      }),
     ].filter(Boolean),
     output: {
       filename: "scripts/[name].bundle.js",
@@ -162,9 +161,6 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         "react-dom": "ReactDOM",
       },
     ],
-    node: {
-      fs: "empty",
-    },
     resolve: {
       extensions: [".js", ".ts", ".tsx", ".css", ".scss", ".json"],
       alias: {
@@ -175,6 +171,17 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         "@app/style": appPath("./src/style/index.ts"),
         React: appPath("node_modules/react"),
         ReactDOM: appPath("node_modules/react-dom"),
+        process: "process",
+      },
+      // browserで参照するmoduleのfallback
+      fallback: {
+        path: require.resolve("path-browserify"),
+        os: require.resolve("os-browserify/browser"),
+        // https://stackoverflow.com/questions/65018431/webpack-5-uncaught-referenceerror-process-is-not-defined
+        process: require.resolve("process/browser"),
+        fs: false,
+        perf_hooks: false,
+        buffer: false,
       },
     },
     module: {
@@ -182,15 +189,23 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
         {
           test: /\.tsx?$/,
           exclude: [/__tests__/, /node_modules/],
-          loaders: [babelLoader, tsLoader],
+          loader: "ts-loader",
+          options: {
+            configFile: "tsconfig.json",
+            transpileOnly: true,
+          },
         },
         {
           test: /\.scss$/,
-          loaders: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", ...cssLoaders].filter(Boolean) as webpack.RuleSetUse,
+          use: [isProduction ? MiniCssExtractPlugin.loader : "style-loader", ...cssLoaders].filter(Boolean) as webpack.RuleSetUse,
         },
         {
           test: /\.js$/,
-          loader: babelLoader,
+          loader: "babel-loader",
+          options: {
+            cacheDirectory: true,
+            presets: [["@babel/preset-env"]],
+          },
         },
         {
           test: /\.ttf$/,
