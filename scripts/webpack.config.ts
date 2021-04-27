@@ -155,6 +155,7 @@ export const generateConfig = (isProduction: boolean): webpack.Configuration => 
     output: {
       filename: "scripts/[name].bundle.js",
       path: path.resolve(__dirname, "../dist"),
+      clean: true,
     },
     externals: [
       {
