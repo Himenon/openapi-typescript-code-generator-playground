@@ -11,8 +11,11 @@ export interface Params {
 
 const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
   const resolvedReferenceDocument = schema;
-  const parser = new Api.OpenApiTools.Parser(entryPoint, schema, resolvedReferenceDocument, {});
+  const parser = new Api.OpenApiTools.Parser(entryPoint, schema, resolvedReferenceDocument);
   const generatorTemplates: Types.CodeGenerator.CustomGenerator<any>[] = [
+    {
+      generator: () => parser.getAdditionalTypeStatements(),
+    },
     {
       generator: Templates.ApiClient.generator,
       option: {}

@@ -33,8 +33,12 @@ export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): St
     case "UPDATE_INPUT_CODE": {
       // repository.saveItem<string>(Constants.INPUT_CODE_KEY, action.code);
       const encodedCode = LzString.compressToEncodedURIComponent(action.code);
-      const q = appendQueryParams({ code: encodedCode });
-      hooks.history.replace(`?${q}`);
+      const killoBytes = new Blob([encodedCode]).size / 1000; // KB
+      // 12KB以下のテキストのみクエリパラメーターに付与を許可する
+      if (killoBytes <= 12) {
+        const q = appendQueryParams({ code: encodedCode });
+        hooks.history.replace(`?${q}`);
+      }
       return { ...state, code: action.code };
     }
     default:
