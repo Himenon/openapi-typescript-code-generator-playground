@@ -1,13 +1,13 @@
 {
   "name": "@himenon/openapi-typescript-code-generator-play",
   "version": "0.1.0",
+  "private": true,
   "homepage": "https://github.com/Himenon/tiny-react-app-template#readme",
   "bugs": "https://github.com/Himenon/tiny-react-app-template/issues",
   "repository": {
     "type": "git",
     "url": "git@github.com:Himenon/tiny-react-app-template.git"
   },
-  "private": true,
   "license": "MIT",
   "scripts": {
     "build": "cross-env NODE_ENV=production ts-node -P ./scripts/tsconfig.cli.json ./scripts/build.ts",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
-    "@himenon/openapi-typescript-code-generator": "0.12.2",
+    "@himenon/openapi-typescript-code-generator": "0.15.0",
     "@rebass/emotion": "3.2.0",
     "acorn": "7.2.0",
     "acorn-jsx": "5.2.0",
