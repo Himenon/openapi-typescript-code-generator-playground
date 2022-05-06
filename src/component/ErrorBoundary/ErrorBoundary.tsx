@@ -1,13 +1,13 @@
 import * as React from "react";
 
-export interface ErrorBoundaryProps {}
+export type ErrorBoundaryProps = {};
 
 export interface State {
   error: any | null;
   errorInfo: any | null;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { error: null, errorInfo: null };
@@ -39,8 +39,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
         </div>
       );
     }
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }
-
-export { ErrorBoundaryProps as Props, ErrorBoundary as Component };

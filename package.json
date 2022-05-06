@@ -37,6 +37,7 @@
     "acorn-jsx": "5.3.2",
     "astring": "1.8.3",
     "estree-walker": "3.0.1",
+    "history": "^5.3.0",
     "js-yaml": "^4.1.0",
     "lz-string": "1.4.4",
     "os-browserify": "^0.3.0",

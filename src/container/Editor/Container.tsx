@@ -1,13 +1,15 @@
 import { Editor } from "@app/component";
 import { Store } from "./Store";
 
-export const generateProps = (store: Store): Editor.Props => {
+export const generateProps = (store: Store): Editor.EditorProps => {
   return {
     editor: {
       width: "100%",
       height: "98vh",
-      language: "yaml",
-      value: store.inputCode,
+      // language: "yaml",
+      defaultValue: store.inputCode,
+      defaultLanguage: "yaml",
+      // value: store.inputCode,
       theme: "vs-dark",
       options: {
         minimap: {

@@ -1,5 +1,5 @@
-import * as Editor from "../Editor/Editor";
-import * as Preview from "../Preview/Preview";
+import { Editor, EditorProps } from "../Editor/Editor";
+import { Preview, PreviewProps } from "../Preview/Preview";
 import { Styles } from "./Styles";
 
 export interface ClassNames {
@@ -7,16 +7,16 @@ export interface ClassNames {
   preview?: string;
 }
 
-export interface Props {
-  editor: Editor.Props;
-  preview: Preview.Props;
+export interface PlaygroundProps {
+  editor: EditorProps;
+  preview: PreviewProps;
 }
 
-export const Component = ({ editor, preview }: Props) => {
+export const Playground = ({ editor, preview }: PlaygroundProps) => {
   return (
     <Styles>
-      <Editor.Component {...editor} className="editor" />
-      <Preview.Component {...preview} className="preview" />
+      <Editor {...editor} className="editor" />
+      <Preview {...preview} className="preview" />
     </Styles>
   );
 };

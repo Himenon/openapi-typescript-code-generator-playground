@@ -1,20 +1,14 @@
 import { ActionTypes } from "./Action";
 import { DEFAULT_STATE, State } from "./State";
-// import { LocalStorage } from "@app/infra";
-// import * as Constants from "./Constants";
 import LzString from "lz-string";
-import { useHistory } from "react-router-dom";
 import * as querystring from "querystring";
 
-// const repository = LocalStorage.createRepository("Playground");
-
 export interface Hooks {
-  history: ReturnType<typeof useHistory>;
 }
 
 const appendQueryParams = (query: { code?: string }): string => {
   const searchParams = new URLSearchParams(window.location.search);
-  const params = {};
+  const params: Record<string, string> = {};
   searchParams.forEach((v, k) => {
     params[k] = v;
   });
@@ -37,7 +31,7 @@ export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): St
       // 12KB以下のテキストのみクエリパラメーターに付与を許可する
       if (killoBytes <= 12) {
         const q = appendQueryParams({ code: encodedCode });
-        hooks.history.replace(`?${q}`);
+        console.log(`${q}`)
       }
       return { ...state, code: action.code };
     }

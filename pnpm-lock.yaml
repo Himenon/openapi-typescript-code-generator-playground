@@ -40,6 +40,7 @@ specifiers:
   estree-walker: 3.0.1
   fibers: 5.0.1
   gh-pages: 3.2.3
+  history: ^5.3.0
   husky: 7.0.4
   jest: 28.0.3
   js-yaml: ^4.1.0
@@ -74,6 +75,7 @@ dependencies:
   acorn-jsx: 5.3.2_acorn@8.7.1
   astring: 1.8.3
   estree-walker: 3.0.1
+  history: 5.3.0
   js-yaml: 4.1.0
   lz-string: 1.4.4
   os-browserify: 0.3.0
@@ -6023,6 +6025,12 @@ packages:
       tiny-invariant: 1.2.0
       tiny-warning: 1.0.3
       value-equal: 1.0.1
+    dev: false
+
+  /history/5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+    dependencies:
+      '@babel/runtime': 7.17.9
     dev: false
 
   /hoist-non-react-statics/3.3.2:
