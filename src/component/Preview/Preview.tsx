@@ -2,12 +2,10 @@ import * as React from "react";
 import { LiveProvider, LiveEditor } from "react-live";
 import * as ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 import dracula from 'prism-react-renderer/themes/dracula';
+import { Styles } from "./Styles";
 
-const classNames = require("./preview.scss");
-
-type ElementProps = JSX.IntrinsicElements["div"];
-
-export interface Props extends ElementProps {
+export interface Props {
+  className?: string;
   code: string;
   transformCode: (code: string) => string;
   scope: {};
@@ -19,14 +17,14 @@ export const Component = ({ code, transformCode, scope, ...props }: Props) => {
     updateTsCode(transformCode(code));
   }, [code]);
   return (
-    <div {...props}>
+    <Styles {...props}>
       <ErrorBoundary.Component>
         <LiveProvider code={code} scope={scope} noInline={true} theme={dracula} >
-          <div className={classNames.liveEditor}>
+          <div className="live-editor">
             <LiveEditor readOnly={false} code={tsCode} language="typescript" />
           </div>
         </LiveProvider>
       </ErrorBoundary.Component>
-    </div>
+    </Styles>
   );
 };
