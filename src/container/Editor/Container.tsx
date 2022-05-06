@@ -13,7 +13,7 @@ export const generateProps = (store: Store): Editor.EditorProps => {
       theme: "vs-dark",
       options: {
         minimap: {
-          enabled: false,
+          enabled: true,
         },
         selectOnLineNumbers: true,
         roundedSelection: false,

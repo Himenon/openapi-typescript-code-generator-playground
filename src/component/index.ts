@@ -5,5 +5,4 @@ import * as Editor from "./Editor/Editor";
 export { Editor };
 
 import * as Preview from "./Preview/Preview";
-import { Playground } from './Playground/Playground';
 export { Preview };
