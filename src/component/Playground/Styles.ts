@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Styles = styled.div`
-  display: "flex";
-  flex-direction: "row";
-  border-top: "1px solid #eee";
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #eee;
   .editor {
     height: 98vh;
     width: 100%;
