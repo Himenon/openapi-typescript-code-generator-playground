@@ -1,9 +1,13 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import { AppRouter } from "./router";
 
 const initialize = () => {
-  ReactDOM.render(<AppRouter />, document.getElementById("root"));
+  const container = document.getElementById("root");
+  if (!container) {
+    throw new Error("Not found #root");
+  }
+  const root = ReactDOM.createRoot(container);
+  root.render(<AppRouter />);
 };
 
 initialize();

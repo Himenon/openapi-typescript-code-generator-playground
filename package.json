@@ -89,6 +89,7 @@
     "lerna": "4.0.0",
     "lint-staged": "12.4.1",
     "prettier": "2.6.2",
+    "process": "^0.11.10",
     "regenerator-runtime": "0.13.9",
     "sass": "1.51.0",
     "serve": "13.0.2",

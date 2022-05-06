@@ -8,6 +8,9 @@ export default defineConfig({
   plugins: [
     react(),
   ],
+  define: {
+    "process.env.GENERATOR_VERSION": JSON.stringify("dummy"),
+  },
   resolve: {
     alias: {
       path: "path-browserify",

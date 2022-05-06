@@ -19,10 +19,10 @@ export const generateProps = (store: Store): Editor.Props => {
         cursorStyle: "line",
         automaticLayout: false,
       },
-      onChange: (newValue: string) => {
-        store.onChangeEditor(newValue);
+      onChange: (newValue: string | undefined) => {
+        newValue && store.onChangeEditor(newValue);
       },
-      editorWillMount: monaco => {
+      beforeMount: monaco => {
         // https://github.com/microsoft/monaco-editor/issues/264#issuecomment-286226099
         monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
           noSemanticValidation: false,
