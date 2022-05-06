@@ -11,6 +11,7 @@ pnpm start # start debug server
 
 ```bash
 pnpm run build
+pnpm run copy
 ```
 
 ### Release
