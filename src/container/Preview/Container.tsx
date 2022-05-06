@@ -5,6 +5,5 @@ export const generateProps = (store: Store): Preview.PreviewProps => {
   return {
     code: store.code,
     transformCode: store.transformCode,
-    scope: store.scope,
   };
 };

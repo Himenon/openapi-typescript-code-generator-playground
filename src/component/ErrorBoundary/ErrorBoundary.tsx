@@ -1,10 +1,11 @@
 import * as React from "react";
 
-export type ErrorBoundaryProps = {};
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface ErrorBoundaryProps {}
 
 export interface State {
-  error: any | null;
-  errorInfo: any | null;
+  error: unknown | null;
+  errorInfo: unknown | null;
 }
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {

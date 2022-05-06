@@ -23,7 +23,7 @@ export const generateProps = (store: Store): Editor.EditorProps => {
       onChange: (newValue: string | undefined) => {
         newValue && store.onChangeEditor(newValue);
       },
-      beforeMount: monaco => {
+      beforeMount: (monaco) => {
         // https://github.com/microsoft/monaco-editor/issues/264#issuecomment-286226099
         monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
           noSemanticValidation: false,
@@ -44,7 +44,10 @@ export const generateProps = (store: Store): Editor.EditorProps => {
         });
         // https://stackoverflow.com/questions/43058191/how-to-use-addextralib-in-monaco-with-an-external-type-definition
         // https://github.com/Microsoft/monaco-editor/blob/017c5028090b0eb571c9c47c4cf5a1d6f0a0fdc3/website/playground/new-samples/extending-language-services/configure-javascript-defaults/sample.js#L19
-        monaco.languages.typescript.typescriptDefaults.addExtraLib(process.env.TYPE_DEF_REACT_GLOBAL || "", "node_modules/@types/react/global.d.ts");
+        monaco.languages.typescript.typescriptDefaults.addExtraLib(
+          process.env.TYPE_DEF_REACT_GLOBAL || "",
+          "node_modules/@types/react/global.d.ts",
+        );
       },
     },
   };

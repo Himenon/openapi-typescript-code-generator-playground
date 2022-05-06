@@ -13,7 +13,6 @@ const generateProps = (stores: Domain.Stores, store: Store): PlaygroundProps => 
   };
 };
 
-
 export const PlaygroundContainer = () => {
   const code = LzString.decompressFromEncodedURIComponent("") || undefined;
 
