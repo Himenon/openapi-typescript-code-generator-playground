@@ -4,8 +4,8 @@ import * as React from "react";
 export interface ErrorBoundaryProps {}
 
 export interface State {
-  error: unknown | null;
-  errorInfo: unknown | null;
+  error: Error | null;
+  errorInfo: React.ErrorInfo | null;
 }
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
@@ -19,7 +19,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // You can also log the error to an error reporting service
     this.setState({
       error: error,

@@ -20,7 +20,7 @@ export const PlaygroundContainer = () => {
 
   const createReducer = <T, S>([state, dispatch]: [T, S]): { state: T; dispatch: S } => ({ state, dispatch });
   const domainStores: Domain.Stores = {
-    app: createReducer(React.useReducer(...reducers.app({}))),
+    app: createReducer(React.useReducer(...reducers.app())),
   };
   const viewStore = generateStore(domainStores);
   return <Playground {...generateProps(domainStores, viewStore)} />;

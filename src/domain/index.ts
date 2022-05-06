@@ -2,7 +2,7 @@ import * as App from "./App";
 export { App };
 
 export interface Reducers {
-  app: (hooks: App.Hooks) => App.Reducer;
+  app: () => App.Reducer;
 }
 
 export interface Stores {
