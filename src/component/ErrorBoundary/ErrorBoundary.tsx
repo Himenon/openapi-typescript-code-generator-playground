@@ -1,7 +1,7 @@
 import * as React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ErrorBoundaryProps {}
+export type ErrorBoundaryProps = React.PropsWithChildren<any>;
 
 export interface State {
   error: Error | null;
