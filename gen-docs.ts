@@ -1,7 +1,4 @@
 import * as Meta from "@himenon/openapi-typescript-code-generator/meta";
-import * as cpy from "cpy";
+import * as fs from "fs-extra";
 
-cpy("dist", `docs/v${Meta.Version}`).catch(error => {
-  console.error(error);
-  process.exit(1);
-})
+fs.copySync("dist", `docs/v${Meta.Version}`);
