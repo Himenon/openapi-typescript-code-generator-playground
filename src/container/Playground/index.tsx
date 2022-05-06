@@ -1,4 +1,4 @@
-import { Playground, PlaygroundProps } from "@app/component";
+import { Playground, PlaygroundProps } from "@app/component/Playground/Playground";
 import { useEditorProps } from "./useEditorProps";
 import { usePreviewProps } from "./usePreviewProps";
 // import LzString from "lz-string";

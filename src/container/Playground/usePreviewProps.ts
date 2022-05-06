@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Preview } from "@app/component";
+import { PreviewProps } from "@app/component/Preview/Preview";
 import { Converter } from "@app/infra";
 import { useAppContext } from "@app/context/app";
 
-export const usePreviewProps = (): Preview.PreviewProps => {
+export const usePreviewProps = (): PreviewProps => {
   const { state } = useAppContext();
 
   const [tsCode, updateTsCode] = React.useState("");

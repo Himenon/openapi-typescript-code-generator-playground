@@ -1,7 +1,7 @@
-import { Editor } from "@app/component";
+import { EditorProps } from "@app/component/Editor/Editor";
 import { useAppContext } from "@app/context/app";
 
-export const useEditorProps = (): Editor.EditorProps => {
+export const useEditorProps = (): EditorProps => {
   const { state, updateState } = useAppContext();
   return {
     editor: {
