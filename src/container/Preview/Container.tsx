@@ -1,9 +1,17 @@
+import * as React from "react";
 import { Preview } from "@app/component";
-import { Store } from "./Store";
+import { Converter } from "@app/infra";
+import { useAppContext } from "@app/context/app";
 
-export const generateProps = (store: Store): Preview.PreviewProps => {
+export const usePreviewProps = (): Preview.PreviewProps => {
+  const { state } = useAppContext();
+
+  const [tsCode, updateTsCode] = React.useState("");
+  React.useEffect(() => {
+    const newTsCode = Converter.transformCode(state.code);
+    updateTsCode(newTsCode);
+  }, [state.code]);
   return {
-    code: store.code,
-    transformCode: store.transformCode,
+    tsCode: tsCode,
   };
 };

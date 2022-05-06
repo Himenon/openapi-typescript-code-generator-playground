@@ -6,7 +6,6 @@ const initialize = () => {
   if (!container) {
     throw new Error("Not found #root");
   }
-  // ReactDOM.render(<AppRouter />, container);
   const root = ReactDOM.createRoot(container);
   root.render(<AppRouter />);
 };
