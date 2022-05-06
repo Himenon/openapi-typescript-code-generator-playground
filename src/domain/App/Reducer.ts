@@ -1,7 +1,6 @@
 import { ActionTypes } from "./Action";
 import { DEFAULT_STATE, State } from "./State";
 import LzString from "lz-string";
-import * as querystring from "querystring";
 
 export interface Hooks {
 }
@@ -19,7 +18,7 @@ const appendQueryParams = (query: { code?: string }): string => {
       params[key] = value;
     }
   });
-  return querystring.stringify(params);
+  return JSON.stringify(params);
 };
 
 export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): State => {
@@ -31,7 +30,7 @@ export const reducer = (hooks: Hooks) => (state: State, action: ActionTypes): St
       // 12KB以下のテキストのみクエリパラメーターに付与を許可する
       if (killoBytes <= 12) {
         const q = appendQueryParams({ code: encodedCode });
-        console.log(`${q}`)
+        // console.log(`${q}`)
       }
       return { ...state, code: action.code };
     }
