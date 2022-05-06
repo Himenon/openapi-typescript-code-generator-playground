@@ -1,19 +1,18 @@
-import * as React from "react";
-import MonacoEditor, { MonacoEditorProps } from "react-monaco-editor";
-import * as ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import MonacoEditor, { EditorProps as MonacoEditorProps } from "@monaco-editor/react";
+import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
 type Element = JSX.IntrinsicElements["div"];
 
-export interface Props extends Element {
+export interface EditorProps extends Element {
   editor: MonacoEditorProps;
 }
 
-export const Component = ({ editor, ...props }: Props) => {
+export const Editor = ({ editor, ...props }: EditorProps) => {
   return (
-    <ErrorBoundary.Component>
+    <ErrorBoundary>
       <div {...props}>
         <MonacoEditor {...editor} />
       </div>
-    </ErrorBoundary.Component>
+    </ErrorBoundary>
   );
 };

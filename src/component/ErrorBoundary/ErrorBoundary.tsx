@@ -1,13 +1,14 @@
 import * as React from "react";
 
-export interface ErrorBoundaryProps {}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export type ErrorBoundaryProps = React.PropsWithChildren<any>;
 
 export interface State {
-  error: any | null;
-  errorInfo: any | null;
+  error: Error | null;
+  errorInfo: React.ErrorInfo | null;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
+export class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { error: null, errorInfo: null };
@@ -18,7 +19,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // You can also log the error to an error reporting service
     this.setState({
       error: error,
@@ -39,8 +40,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
         </div>
       );
     }
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }
-
-export { ErrorBoundaryProps as Props, ErrorBoundary as Component };

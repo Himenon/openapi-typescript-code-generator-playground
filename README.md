@@ -3,32 +3,33 @@
 ## Start Development
 
 ```bash
-yarn
-yarn start # start debug server
+pnpm
+pnpm start # start debug server
 ```
 
 ## Build
 
 ```bash
-yarn run build
+pnpm run build
+pnpm run copy
 ```
 
 ### Release
 
 ```bash
-yarn run deploy # default release: github pages
+pnpm run deploy # default release: github pages
 ```
 
 ### Run server
 
 ```bash
-yarn run serve
+pnpm run serve
 ```
 
 ## Code Format
 
 ```bash
-yarn run format
+pnpm run format
 ```
 
 ## License

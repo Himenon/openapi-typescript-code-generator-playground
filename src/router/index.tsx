@@ -1,18 +1,16 @@
-import React from "react";
-import * as App from "../App";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import * as React from "react";
+import { App } from "../App";
+import * as Meta from "@himenon/openapi-typescript-code-generator/meta";
 
 export const AppRouter = () => {
   return (
-    <Router>
+    <React.StrictMode>
       <nav>
-        <h1 id="site-title">Playground - @himenon/openapi-typescript-code-generator@{process.env.GENERATOR_VERSION}</h1>
+        <h1 id="site-title">
+          Playground - {Meta.Name}@{Meta.Version}
+        </h1>
       </nav>
-      <Switch>
-        <Route path="/">
-          <App.Container />
-        </Route>
-      </Switch>
-    </Router>
+      <App />
+    </React.StrictMode>
   );
 };

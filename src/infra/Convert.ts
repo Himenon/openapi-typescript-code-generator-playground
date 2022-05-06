@@ -18,12 +18,12 @@ const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
     },
     {
       generator: Templates.ApiClient.generator,
-      option: {}
-    }
+      option: {},
+    },
   ];
   const create = () => {
     const statements = parser.getOpenApiTypeDefinitionStatements();
-    generatorTemplates.forEach(generatorTemplate => {
+    generatorTemplates.forEach((generatorTemplate) => {
       const payload = parser.getCodeGeneratorParamsArray();
       const extraStatements = Api.TsGenerator.Utils.convertIntermediateCodes(generatorTemplate.generator(payload, generatorTemplate.option));
       statements.push(...extraStatements);

@@ -1,24 +1,22 @@
-import * as React from "react";
-import * as Editor from "../Editor/Editor";
-import * as Preview from "../Preview/Preview";
+import { Editor, EditorProps } from "../Editor/Editor";
+import { Preview, PreviewProps } from "../Preview/Preview";
+import { Styles } from "./Styles";
 
 export interface ClassNames {
   editor?: string;
   preview?: string;
 }
 
-const classNames: ClassNames = require("./playground.scss");
-
-export interface Props {
-  editor: Editor.Props;
-  preview: Preview.Props;
+export interface PlaygroundProps {
+  editor: EditorProps;
+  preview: PreviewProps;
 }
 
-export const Component = ({ editor, preview }: Props) => {
+export const Playground = ({ editor, preview }: PlaygroundProps) => {
   return (
-    <div style={{ display: "flex", flexDirection: "row", borderTop: "1px solid #eee" }}>
-      <Editor.Component {...editor} className={classNames.editor} />
-      <Preview.Component {...preview} className={classNames.preview} />
-    </div>
+    <Styles>
+      <Editor {...editor} className="editor" />
+      <Preview {...preview} className="preview" />
+    </Styles>
   );
 };
