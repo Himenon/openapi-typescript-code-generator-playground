@@ -1,13 +1,17 @@
-import * as Domain from "@app/domain";
 import * as React from "react";
+import * as Domain from "@app/domain";
+import { GlobalStyle } from "./Styles";
 import { Playground } from "./container";
 
-interface AppProps {
+export interface AppProps {
   reducers: Domain.Reducers;
 }
 
 export const App = () => {
-  return <Playground.Container />;
+  return (
+    <React.StrictMode>
+      <GlobalStyle />
+      <Playground.Container />
+    </React.StrictMode>
+  );
 };
-
-export { AppProps as Props, App as Container };

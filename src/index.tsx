@@ -1,4 +1,4 @@
-import * as ReactDOM from "react-dom/client";
+import * as ReactDOM from "react-dom";
 import { AppRouter } from "./router";
 
 const initialize = () => {
@@ -6,8 +6,9 @@ const initialize = () => {
   if (!container) {
     throw new Error("Not found #root");
   }
-  const root = ReactDOM.createRoot(container);
-  root.render(<AppRouter />);
+  ReactDOM.render(<AppRouter />, container)
+  // const root = ReactDOM.createRoot(container);
+  // root.render(<AppRouter />);
 };
 
 initialize();

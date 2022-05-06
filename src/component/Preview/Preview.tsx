@@ -19,11 +19,14 @@ export const Component = ({ code, transformCode, scope, ...props }: Props) => {
   return (
     <Styles {...props}>
       <ErrorBoundary.Component>
-        <LiveProvider code={code} scope={scope} noInline={true} theme={dracula} >
+        <pre>
+          {tsCode}
+        </pre>
+        {/* <LiveProvider code={code} scope={scope} noInline={true} theme={dracula} >
           <div className="live-editor">
             <LiveEditor readOnly={false} code={tsCode} language="typescript" />
           </div>
-        </LiveProvider>
+        </LiveProvider> */}
       </ErrorBoundary.Component>
     </Styles>
   );
