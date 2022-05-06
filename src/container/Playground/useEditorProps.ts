@@ -1,15 +1,15 @@
-import { Editor } from "@app/component";
-import { Store } from "./Store";
+import { EditorProps } from "@app/component/Editor/Editor";
+import { useAppContext } from "@app/context/app";
 
-export const generateProps = (store: Store): Editor.EditorProps => {
+export const useEditorProps = (): EditorProps => {
+  const { state, updateState } = useAppContext();
   return {
     editor: {
       width: "100%",
       height: "98vh",
       language: "yaml",
-      defaultValue: store.inputCode,
       defaultLanguage: "yaml",
-      value: store.inputCode,
+      value: state.code,
       theme: "vs-dark",
       options: {
         minimap: {
@@ -21,7 +21,10 @@ export const generateProps = (store: Store): Editor.EditorProps => {
         cursorStyle: "line",
       },
       onChange: (newValue: string | undefined) => {
-        newValue && store.onChangeEditor(newValue);
+        if (!newValue) {
+          return;
+        }
+        updateState((prev) => ({ ...prev, code: newValue }));
       },
       beforeMount: (monaco) => {
         // https://github.com/microsoft/monaco-editor/issues/264#issuecomment-286226099

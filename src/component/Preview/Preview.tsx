@@ -1,19 +1,13 @@
-import * as React from "react";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 import MonacoEditor from "@monaco-editor/react";
 import { Styles } from "./Styles";
 
 export interface PreviewProps {
   className?: string;
-  code: string;
-  transformCode: (code: string) => string;
+  tsCode: string;
 }
 
-export const Preview = ({ code, transformCode, ...props }: PreviewProps) => {
-  const [tsCode, updateTsCode] = React.useState("");
-  React.useEffect(() => {
-    updateTsCode(transformCode(code));
-  }, [code]);
+export const Preview = ({ tsCode, ...props }: PreviewProps) => {
   return (
     <Styles {...props}>
       <ErrorBoundary>

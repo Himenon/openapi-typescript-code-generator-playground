@@ -1,4 +1,4 @@
-const SAMPLE_CODE = `openapi: 3.0.3
+export const SAMPLE_CODE = `openapi: 3.0.3
 info:
   version: 1.0.0
   title: DEMO
@@ -103,11 +103,3 @@ paths:
                     items:
                       $ref: "#/components/schemas/Book"
 `;
-
-export interface State {
-  code: string;
-}
-
-export const DEFAULT_STATE: State = {
-  code: SAMPLE_CODE,
-};
