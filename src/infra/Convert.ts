@@ -17,7 +17,7 @@ const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
       generator: () => parser.getAdditionalTypeStatements(),
     },
     {
-      generator: Templates.ApiClient.generator,
+      generator: Templates.FunctionalApiClient.generator,
       option: {},
     },
   ];
