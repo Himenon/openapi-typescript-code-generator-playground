@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': 16.2.4
   '@commitlint/config-conventional': 16.2.4
-  '@himenon/openapi-typescript-code-generator': 0.22.3
+  '@himenon/openapi-typescript-code-generator': 0.24.0
   '@monaco-editor/react': ^4.4.4
   '@swc/core': ^1.2.177
   '@swc/helpers': ^0.3.13
@@ -49,7 +49,7 @@ specifiers:
   vite: ^4.2.0
 
 dependencies:
-  '@himenon/openapi-typescript-code-generator': 0.22.3
+  '@himenon/openapi-typescript-code-generator': 0.24.0
   '@monaco-editor/react': 4.4.4_ef5jwxihqo6n7gxfmzogljlgcm
   js-yaml: 4.1.0
   lz-string: 1.4.4
@@ -906,8 +906,8 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@himenon/openapi-typescript-code-generator/0.22.3:
-    resolution: {integrity: sha512-TxJ2Q7wpuzJv2GZV8zMOifOlEF5csN7eun05+Psp7A8ztxSSuCbyMJnOcN5yXEipqEiP7yFTtGZmQpVbbHc4Sw==}
+  /@himenon/openapi-typescript-code-generator/0.24.0:
+    resolution: {integrity: sha512-dR5A1m/X8wHll+dMMC0ZJC3ABmIQhFACFyES2qi/N3QT4uMMAEXsWaby+R6lY+iL+npffoo1FmQKi9C/sDdSSw==}
     engines: {pnpm: '>=6'}
     dependencies:
       '@himenon/path-oriented-data-structure': 0.2.1
