@@ -93,110 +93,130 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     padding: 0;
     margin: 0;
   }
-`,_K=({editor:i,preview:s})=>b0(fK,{children:[Nl(cK,{...i,className:"editor"}),Nl(lK,{...s,className:"preview"})]}),dK=`openapi: 3.0.3
+`,_K=({editor:i,preview:s})=>b0(fK,{children:[Nl(cK,{...i,className:"editor"}),Nl(lK,{...s,className:"preview"})]}),dK=`openapi: 3.1.0
 info:
   version: 1.0.0
-  title: DEMO
-  description: demo spec
+  title: ref.access
+  description: Library test schema
   license:
     name: MIT
 
 servers:
-  - url: "http://dev.api.test.domain/"
+  - url: "http://dev.ref.access/"
     description: Development Environment
-  - url: "https://api.test.domain/"
+  - url: "https://ref.access/"
     description: Production Environment
+
+tags:
+  - name: test
 
 components:
   schemas:
-    Author:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: author name
     Book:
       type: object
-      description: Book Model
       required:
-        - title
-        - author
-        - ISBN
-        - publishAt
-        - updatedAt
+        - metadata
       properties:
-        title:
-          type: string
         author:
-          $ref: "#/components/schemas/Author"
-        ISBN:
-          type: string
-        publishAt:
-          type: string
-          format: date
-        updatedAt:
-          type: string
-          format: date
-  responses:
-    Books:
-      description: Get Books
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - books
-            properties:
-              books:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Book"
-
+          type: object
+          properties:
+            name:
+              type: string
+            age:
+              type: string
+        publisher:
+          type: object
+          properties:
+            name:
+              type: String
+            address:
+              type: string
+        metadata:
+          type: object
+          required:
+            - description
+          properties:
+            description:
+              type: string
+    Author:
+      $ref: "#/components/schemas/Book/properties/author"
+    Publisher:
+      $ref: "#/components/schemas/Book/properties/publisher"
 
 paths:
-  /get/books:
+  /get/book/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Book ID
+        schema:
+          type: string
+          format: uuid
     get:
-      operationId: getBooks
-      responses:
-        200:
-          $ref: "#/components/responses/Books"
-  /search/books:
-    get:
-      operationId: searchBooks
-      parameters:
-        - in: query
-          name: filter
-          explode: true
-          style: deepObject
-          schema:
-            type: object
-            required:
-              - title
-              - author
-            properties:
-              title:
-                type: string
-              author:
-                type: string
-            additionalProperties:
-              type: string
+      operationId: getBook
       responses:
         200:
           description: Get Books
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  books:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Book"
+                $ref: "#/components/schemas/Book"
+  /get/book/{id}/description:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Book ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getDescription
+      responses:
+        200:
+          description: Get Book Description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book/properties/metadata/properties/description"
+
+  /get/author/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Author Id
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getAuthor
+      responses:
+        200:
+          description: Get Author
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book/properties/author"
+  /get/publisher/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Publisher ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getPublisher
+      responses:
+        200:
+          description: Get Publisher
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Publisher"
 `,lF=Ho.createContext({}),fF=()=>Ho.useContext(lF),pK=i=>{const[s,u]=Ho.useState({code:i.defaultCode||dK}),m={state:s,updateState:u};return Nl(lF.Provider,{value:m,children:i.children})},gK=()=>{const{state:i,updateState:s}=fF();return{editor:{width:"100%",height:"98vh",language:"yaml",defaultLanguage:"yaml",value:i.code,theme:"vs-dark",options:{minimap:{enabled:!0},selectOnLineNumbers:!0,roundedSelection:!1,readOnly:!1,cursorStyle:"line"},onChange:u=>{u&&s(m=>({...m,code:u}))},beforeMount:u=>{u.languages.typescript.typescriptDefaults.setDiagnosticsOptions({noSemanticValidation:!1,noSyntaxValidation:!1,noSuggestionDiagnostics:!1}),u.languages.typescript.typescriptDefaults.setCompilerOptions({jsx:u.languages.typescript.JsxEmit.React,jsxFactory:"React.createElement",reactNamespace:"React",allowNonTsExtensions:!0,allowJs:!0,strict:!0,noLib:!1,preserveConstEnums:!0,target:u.languages.typescript.ScriptTarget.Latest}),u.languages.typescript.typescriptDefaults.addExtraLib({}.TYPE_DEF_REACT_GLOBAL||"","node_modules/@types/react/global.d.ts")}}}};var Ql={};Ql.endianness=function(){return"LE"};Ql.hostname=function(){return typeof location<"u"?location.hostname:""};Ql.loadavg=function(){return[]};Ql.uptime=function(){return 0};Ql.freemem=function(){return Number.MAX_VALUE};Ql.totalmem=function(){return Number.MAX_VALUE};Ql.cpus=function(){return[]};Ql.type=function(){return"Browser"};Ql.release=function(){return typeof navigator<"u"?navigator.appVersion:""};Ql.networkInterfaces=Ql.getNetworkInterfaces=function(){return{}};Ql.arch=function(){return"javascript"};Ql.platform=function(){return"browser"};Ql.tmpdir=Ql.tmpDir=function(){return"/tmp"};var pm=Ql.EOL=`
 `;Ql.homedir=function(){return"/"};function DS(i){throw new Error('Could not dynamically require "'+i+'". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.')}var q6={},mK={get exports(){return q6},set exports(i){q6=i}};const vK={},yK=Object.freeze(Object.defineProperty({__proto__:null,default:vK},Symbol.toStringTag,{value:"Module"})),Wy=JV(yK);function cm(i){if(typeof i!="string")throw new TypeError("Path must be a string. Received "+JSON.stringify(i))}function d5(i,s){for(var u="",m=0,j=-1,_e=0,Oe,pr=0;pr<=i.length;++pr){if(pr<i.length)Oe=i.charCodeAt(pr);else{if(Oe===47)break;Oe=47}if(Oe===47){if(!(j===pr-1||_e===1))if(j!==pr-1&&_e===2){if(u.length<2||m!==2||u.charCodeAt(u.length-1)!==46||u.charCodeAt(u.length-2)!==46){if(u.length>2){var de=u.lastIndexOf("/");if(de!==u.length-1){de===-1?(u="",m=0):(u=u.slice(0,de),m=u.length-1-u.lastIndexOf("/")),j=pr,_e=0;continue}}else if(u.length===2||u.length===1){u="",m=0,j=pr,_e=0;continue}}s&&(u.length>0?u+="/..":u="..",m=2)}else u.length>0?u+="/"+i.slice(j+1,pr):u=i.slice(j+1,pr),m=pr-j-1;j=pr,_e=0}else Oe===46&&_e!==-1?++_e:_e=-1}return u}function hK(i,s){var u=s.dir||s.root,m=s.base||(s.name||"")+(s.ext||"");return u?u===s.root?u+m:u+i+m:m}var S0={resolve:function(){for(var s="",u=!1,m,j=arguments.length-1;j>=-1&&!u;j--){var _e;j>=0?_e=arguments[j]:(m===void 0&&(m=process.cwd()),_e=m),cm(_e),_e.length!==0&&(s=_e+"/"+s,u=_e.charCodeAt(0)===47)}return s=d5(s,!u),u?s.length>0?"/"+s:"/":s.length>0?s:"."},normalize:function(s){if(cm(s),s.length===0)return".";var u=s.charCodeAt(0)===47,m=s.charCodeAt(s.length-1)===47;return s=d5(s,!u),s.length===0&&!u&&(s="."),s.length>0&&m&&(s+="/"),u?"/"+s:s},isAbsolute:function(s){return cm(s),s.length>0&&s.charCodeAt(0)===47},join:function(){if(arguments.length===0)return".";for(var s,u=0;u<arguments.length;++u){var m=arguments[u];cm(m),m.length>0&&(s===void 0?s=m:s+="/"+m)}return s===void 0?".":S0.normalize(s)},relative:function(s,u){if(cm(s),cm(u),s===u||(s=S0.resolve(s),u=S0.resolve(u),s===u))return"";for(var m=1;m<s.length&&s.charCodeAt(m)===47;++m);for(var j=s.length,_e=j-m,Oe=1;Oe<u.length&&u.charCodeAt(Oe)===47;++Oe);for(var pr=u.length,de=pr-Oe,e=_e<de?_e:de,o=-1,Q=0;Q<=e;++Q){if(Q===e){if(de>e){if(u.charCodeAt(Oe+Q)===47)return u.slice(Oe+Q+1);if(Q===0)return u.slice(Oe+Q)}else _e>e&&(s.charCodeAt(m+Q)===47?o=Q:Q===0&&(o=0));break}var B=s.charCodeAt(m+Q),t=u.charCodeAt(Oe+Q);if(B!==t)break;B===47&&(o=Q)}var C="";for(Q=m+o+1;Q<=j;++Q)(Q===j||s.charCodeAt(Q)===47)&&(C.length===0?C+="..":C+="/..");return C.length>0?C+u.slice(Oe+o):(Oe+=o,u.charCodeAt(Oe)===47&&++Oe,u.slice(Oe))},_makeLong:function(s){return s},dirname:function(s){if(cm(s),s.length===0)return".";for(var u=s.charCodeAt(0),m=u===47,j=-1,_e=!0,Oe=s.length-1;Oe>=1;--Oe)if(u=s.charCodeAt(Oe),u===47){if(!_e){j=Oe;break}}else _e=!1;return j===-1?m?"/":".":m&&j===1?"//":s.slice(0,j)},basename:function(s,u){if(u!==void 0&&typeof u!="string")throw new TypeError('"ext" argument must be a string');cm(s);var m=0,j=-1,_e=!0,Oe;if(u!==void 0&&u.length>0&&u.length<=s.length){if(u.length===s.length&&u===s)return"";var pr=u.length-1,de=-1;for(Oe=s.length-1;Oe>=0;--Oe){var e=s.charCodeAt(Oe);if(e===47){if(!_e){m=Oe+1;break}}else de===-1&&(_e=!1,de=Oe+1),pr>=0&&(e===u.charCodeAt(pr)?--pr===-1&&(j=Oe):(pr=-1,j=de))}return m===j?j=de:j===-1&&(j=s.length),s.slice(m,j)}else{for(Oe=s.length-1;Oe>=0;--Oe)if(s.charCodeAt(Oe)===47){if(!_e){m=Oe+1;break}}else j===-1&&(_e=!1,j=Oe+1);return j===-1?"":s.slice(m,j)}},extname:function(s){cm(s);for(var u=-1,m=0,j=-1,_e=!0,Oe=0,pr=s.length-1;pr>=0;--pr){var de=s.charCodeAt(pr);if(de===47){if(!_e){m=pr+1;break}continue}j===-1&&(_e=!1,j=pr+1),de===46?u===-1?u=pr:Oe!==1&&(Oe=1):u!==-1&&(Oe=-1)}return u===-1||j===-1||Oe===0||Oe===1&&u===j-1&&u===m+1?"":s.slice(u,j)},format:function(s){if(s===null||typeof s!="object")throw new TypeError('The "pathObject" argument must be of type Object. Received type '+typeof s);return hK("/",s)},parse:function(s){cm(s);var u={root:"",dir:"",base:"",ext:"",name:""};if(s.length===0)return u;var m=s.charCodeAt(0),j=m===47,_e;j?(u.root="/",_e=1):_e=0;for(var Oe=-1,pr=0,de=-1,e=!0,o=s.length-1,Q=0;o>=_e;--o){if(m=s.charCodeAt(o),m===47){if(!e){pr=o+1;break}continue}de===-1&&(e=!1,de=o+1),m===46?Oe===-1?Oe=o:Q!==1&&(Q=1):Oe!==-1&&(Q=-1)}return Oe===-1||de===-1||Q===0||Q===1&&Oe===de-1&&Oe===pr+1?de!==-1&&(pr===0&&j?u.base=u.name=s.slice(1,de):u.base=u.name=s.slice(pr,de)):(pr===0&&j?(u.name=s.slice(1,Oe),u.base=s.slice(1,de)):(u.name=s.slice(pr,Oe),u.base=s.slice(pr,de)),u.ext=s.slice(Oe,de)),pr>0?u.dir=s.slice(0,pr-1):j&&(u.dir="/"),u},sep:"/",delimiter:":",win32:null,posix:null};S0.posix=S0;var Lu=S0;/*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
