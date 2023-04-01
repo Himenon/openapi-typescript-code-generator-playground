@@ -1,105 +1,125 @@
-export const SAMPLE_CODE = `openapi: 3.0.3
+export const SAMPLE_CODE = `openapi: 3.1.0
 info:
   version: 1.0.0
-  title: DEMO
-  description: demo spec
+  title: ref.access
+  description: Library test schema
   license:
     name: MIT
 
 servers:
-  - url: "http://dev.api.test.domain/"
+  - url: "http://dev.ref.access/"
     description: Development Environment
-  - url: "https://api.test.domain/"
+  - url: "https://ref.access/"
     description: Production Environment
+
+tags:
+  - name: test
 
 components:
   schemas:
-    Author:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: author name
     Book:
       type: object
-      description: Book Model
       required:
-        - title
-        - author
-        - ISBN
-        - publishAt
-        - updatedAt
+        - metadata
       properties:
-        title:
-          type: string
         author:
-          $ref: "#/components/schemas/Author"
-        ISBN:
-          type: string
-        publishAt:
-          type: string
-          format: date
-        updatedAt:
-          type: string
-          format: date
-  responses:
-    Books:
-      description: Get Books
-      content:
-        application/json:
-          schema:
-            type: object
-            required:
-              - books
-            properties:
-              books:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Book"
-
+          type: object
+          properties:
+            name:
+              type: string
+            age:
+              type: string
+        publisher:
+          type: object
+          properties:
+            name:
+              type: String
+            address:
+              type: string
+        metadata:
+          type: object
+          required:
+            - description
+          properties:
+            description:
+              type: string
+    Author:
+      $ref: "#/components/schemas/Book/properties/author"
+    Publisher:
+      $ref: "#/components/schemas/Book/properties/publisher"
 
 paths:
-  /get/books:
+  /get/book/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Book ID
+        schema:
+          type: string
+          format: uuid
     get:
-      operationId: getBooks
-      responses:
-        200:
-          $ref: "#/components/responses/Books"
-  /search/books:
-    get:
-      operationId: searchBooks
-      parameters:
-        - in: query
-          name: filter
-          explode: true
-          style: deepObject
-          schema:
-            type: object
-            required:
-              - title
-              - author
-            properties:
-              title:
-                type: string
-              author:
-                type: string
-            additionalProperties:
-              type: string
+      operationId: getBook
       responses:
         200:
           description: Get Books
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  books:
-                    type: array
-                    items:
-                      $ref: "#/components/schemas/Book"
+                $ref: "#/components/schemas/Book"
+  /get/book/{id}/description:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Book ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getDescription
+      responses:
+        200:
+          description: Get Book Description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book/properties/metadata/properties/description"
+
+  /get/author/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Author Id
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getAuthor
+      responses:
+        200:
+          description: Get Author
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book/properties/author"
+  /get/publisher/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Publisher ID
+        schema:
+          type: string
+          format: uuid
+    get:
+      operationId: getPublisher
+      responses:
+        200:
+          description: Get Publisher
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Publisher"
 `;
