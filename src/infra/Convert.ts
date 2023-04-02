@@ -4,12 +4,21 @@ import * as Templates from "@himenon/openapi-typescript-code-generator/templates
 import type * as Types from "@himenon/openapi-typescript-code-generator/types";
 import * as yaml from "js-yaml";
 
+export const TemplateCodeType = {
+  CLASS_BASED: Templates.ClassApiClient.generator,
+  FUNCTION_BASED: Templates.FunctionalApiClient.generator,
+  CURRY_FUNCTION_BASED: Templates.CurryingFunctionalApiClient.generator,
+};
+
+type CodeGeneratorKind = keyof typeof TemplateCodeType;
+
 export interface Params {
   schema: any;
   entryPoint: string;
+  codeGeneratorKind: CodeGeneratorKind;
 }
 
-const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
+const generateTypeScriptCode = ({ schema, entryPoint, codeGeneratorKind }: Params): string => {
   const resolvedReferenceDocument = schema;
   const parser = new Api.OpenApiTools.Parser(entryPoint, schema, resolvedReferenceDocument);
   const generatorTemplates: Types.CodeGenerator.CustomGenerator<any>[] = [
@@ -17,7 +26,7 @@ const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
       generator: () => parser.getAdditionalTypeStatements(),
     },
     {
-      generator: Templates.FunctionalApiClient.generator,
+      generator: TemplateCodeType[codeGeneratorKind],
       option: {},
     },
   ];
@@ -33,12 +42,13 @@ const generateTypeScriptCode = ({ schema, entryPoint }: Params): string => {
   return [Api.OpenApiTools.Comment.generateLeading(resolvedReferenceDocument), Api.TsGenerator.generate(create)].join(EOL + EOL + EOL);
 };
 
-export const transformCode = (src: string): string => {
+export const transformCode = (src: string, codeGeneratorKind: CodeGeneratorKind): string => {
   try {
     const schema = yaml.load(src);
     return generateTypeScriptCode({
       schema: schema,
       entryPoint: ".",
+      codeGeneratorKind,
     });
   } catch (error) {
     console.error(error);

@@ -32,7 +32,7 @@
     "version_up": "lerna version --yes"
   },
   "dependencies": {
-    "@himenon/openapi-typescript-code-generator": "0.25.0",
+    "@himenon/openapi-typescript-code-generator": "0.26.0",
     "@monaco-editor/react": "^4.4.4",
     "js-yaml": "^4.1.0",
     "lz-string": "1.4.4",
