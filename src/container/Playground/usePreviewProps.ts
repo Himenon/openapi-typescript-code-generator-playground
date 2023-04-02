@@ -4,13 +4,13 @@ import { Converter } from "@app/infra";
 import { useAppContext } from "@app/context/app";
 
 export const usePreviewProps = (): PreviewProps => {
-  const { state } = useAppContext();
+  const { state, templateCodeKind } = useAppContext();
 
   const [tsCode, updateTsCode] = React.useState("");
   React.useEffect(() => {
-    const newTsCode = Converter.transformCode(state.code);
+    const newTsCode = Converter.transformCode(state.code, templateCodeKind);
     updateTsCode(newTsCode);
-  }, [state.code]);
+  }, [state.code, templateCodeKind]);
   return {
     tsCode: tsCode,
   };
