@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@himenon/openapi-typescript-code-generator':
-    specifier: 1.0.1
-    version: 1.0.1(typescript@5.3.3)
+    specifier: 1.0.2
+    version: 1.0.2(typescript@5.3.3)
   '@monaco-editor/react':
     specifier: ^4.6.0
     version: 4.6.0(monaco-editor@0.44.0)(react-dom@18.2.0)(react@18.2.0)
@@ -1133,8 +1133,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@himenon/openapi-typescript-code-generator@1.0.1(typescript@5.3.3):
-    resolution: {integrity: sha512-zChYjYISRDofs+Y5odqjihUdAGd3SvM4n1xm5+XFS6njJQ3KWT+rJX86edZoi3yFvAaG9ZqN57o8k+5fBCHKcA==}
+  /@himenon/openapi-typescript-code-generator@1.0.2(typescript@5.3.3):
+    resolution: {integrity: sha512-QBotEWkxz9U++fBXMkhHzgyI53nw+Hl/gNGuh8CvIb6A8D5GaUpuoD6q1j6h+N09EQkVaKlVamxYdCFwq7eqwQ==}
     engines: {pnpm: '>=8'}
     peerDependencies:
       typescript: '>=5'
