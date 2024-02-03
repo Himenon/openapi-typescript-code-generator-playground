@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GlobalStyle } from "./Styles";
 import { PlaygroundContainer } from "@app/container/Playground";
-import * as Meta from "@himenon/openapi-typescript-code-generator/meta";
+import * as Meta from "@himenon/openapi-typescript-code-generator/dist/meta";
 import { AppProvider } from "@app/context/app";
 import { TemplateCodeSelector } from "./TemplateCodeSelector";
 
