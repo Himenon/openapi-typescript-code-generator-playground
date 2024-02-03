@@ -9,8 +9,8 @@ export default defineConfig({
   base: `/v${Meta.Version}/`,
   resolve: {
     alias: {
-      path: "path-browserify",
-      os: "os-browserify",
+      path: path.resolve("node_modules/path-browserify/index.js"),
+      os: path.resolve("node_modules/os-browserify/browser.js"),
       "@app": path.join(__dirname, "src"),
     },
   },
