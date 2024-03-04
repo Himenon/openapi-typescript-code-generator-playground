@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@himenon/openapi-typescript-code-generator':
-    specifier: 1.0.2
-    version: 1.0.2(typescript@5.3.3)
+    specifier: 1.0.9
+    version: 1.0.9(typescript@5.3.3)
   '@monaco-editor/react':
     specifier: ^4.6.0
     version: 4.6.0(monaco-editor@0.44.0)(react-dom@18.2.0)(react@18.2.0)
@@ -1133,22 +1133,16 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@himenon/openapi-typescript-code-generator@1.0.2(typescript@5.3.3):
-    resolution: {integrity: sha512-QBotEWkxz9U++fBXMkhHzgyI53nw+Hl/gNGuh8CvIb6A8D5GaUpuoD6q1j6h+N09EQkVaKlVamxYdCFwq7eqwQ==}
+  /@himenon/openapi-typescript-code-generator@1.0.9(typescript@5.3.3):
+    resolution: {integrity: sha512-ha2G2y+WeZ+O5A7yiTsIAQFmRCbIdX65G0n/YJmH5xNeKX6PJCyZf+YEC689LrLEgQohKQ2kms3kd7jbIUmxPA==}
     engines: {pnpm: '>=8'}
     peerDependencies:
       typescript: '>=5'
     dependencies:
-      '@himenon/path-oriented-data-structure': 0.2.1
       '@types/json-schema': 7.0.15
       ajv: 8.12.0
-      dot-prop: 8.0.2
       js-yaml: 4.1.0
       typescript: 5.3.3
-    dev: false
-
-  /@himenon/path-oriented-data-structure@0.2.1:
-    resolution: {integrity: sha512-TbrbcmJW/E60xA5GPZAf9pBDDUYGbOFL83D/ovDvGxt1s3UkUPbeTced6FbwanCtWM/ZpEHQuX32Z7a7Q25rRg==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:
@@ -4036,13 +4030,6 @@ packages:
     dependencies:
       is-obj: 2.0.0
     dev: true
-
-  /dot-prop@8.0.2:
-    resolution: {integrity: sha512-xaBe6ZT4DHPkg0k4Ytbvn5xoxgpG0jOS1dYxSOwAHPuNLjP3/OzN0gH55SrLqpx8cBfSaVt91lXYkApjb+nYdQ==}
-    engines: {node: '>=16'}
-    dependencies:
-      type-fest: 3.13.1
-    dev: false
 
   /dotenv-expand@10.0.0:
     resolution: {integrity: sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A==}
@@ -9206,6 +9193,7 @@ packages:
   /type-fest@3.13.1:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
+    dev: true
 
   /typed-array-buffer@1.0.0:
     resolution: {integrity: sha512-Y8KTSIglk9OZEr8zywiIHG/kmQ7KWyjseXs1CbSo8vC42w7hg2HgYTxSWwP0+is7bWDc1H+Fo026CpHFwm8tkw==}
