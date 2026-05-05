@@ -1,0 +1,11 @@
+pre-commit:
+  commands:
+    oxlint:
+      glob: "src/**/*.{ts,tsx}"
+      run: pnpm exec oxlint {staged_files}
+    oxfmt:
+      glob: "**/*.{ts,tsx,js,jsx,json,yml,yaml,html,md}"
+      run: pnpm exec oxfmt --write {staged_files} && git add {staged_files}
+    sort-package-json:
+      glob: "package.json"
+      run: pnpm exec sort-package-json {staged_files} && git add {staged_files}

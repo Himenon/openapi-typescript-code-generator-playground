@@ -4,7 +4,7 @@ import { useAppContext, TemplateCodeKind } from "@app/context/app";
 type Item = {
   displayText: string;
   value: TemplateCodeKind;
-}
+};
 
 const list: Item[] = [
   {
@@ -17,8 +17,8 @@ const list: Item[] = [
   },
   {
     displayText: "CurryingFunctionalApiClient",
-    value: "CURRY_FUNCTION_BASED"
-  }
+    value: "CURRY_FUNCTION_BASED",
+  },
 ];
 
 export const TemplateCodeSelector: React.FC = () => {
