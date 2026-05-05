@@ -1,10 +1,11 @@
-import { EOL } from "os";
 import * as Api from "@himenon/openapi-typescript-code-generator/dist/api";
 import * as Templates from "@himenon/openapi-typescript-code-generator/dist/templates";
 import type * as Types from "@himenon/openapi-typescript-code-generator/dist/types";
 import * as yaml from "js-yaml";
 
-export const TemplateCodeType = {
+const EOL = "\n";
+
+export const TemplateCodeType: Record<string, Types.CodeGenerator.GenerateFunction<any>> = {
   CLASS_BASED: Templates.ClassApiClient.generator,
   FUNCTION_BASED: Templates.FunctionalApiClient.generator,
   CURRY_FUNCTION_BASED: Templates.CurryingFunctionalApiClient.generator,
