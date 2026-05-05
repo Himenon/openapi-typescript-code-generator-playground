@@ -1,0 +1,7 @@
+
+minimumReleaseAge: 10080
+onlyBuiltDependencies:
+  - "@biomejs/biome"
+  - '@swc/core'
+  - esbuild
+  - nx
