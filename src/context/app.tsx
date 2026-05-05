@@ -37,7 +37,7 @@ export const AppProvider: React.FC<AppProviderProps> = (props) => {
     templateCodeKind,
     setTemplateCodeKind: (newKind) => {
       setTemplateCodeKind(newKind);
-    }
+    },
   };
 
   return <AppContext.Provider value={defaultContextValue}>{props.children}</AppContext.Provider>;
