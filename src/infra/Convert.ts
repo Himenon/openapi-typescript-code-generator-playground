@@ -35,7 +35,7 @@ const generateTypeScriptCode = ({ schema, entryPoint, codeGeneratorKind }: Param
     const statements = parser.getOpenApiTypeDefinitionStatements();
     generatorTemplates.forEach((generatorTemplate) => {
       const payload = parser.getCodeGeneratorParamsArray();
-      const extraStatements = Api.TsGenerator.Utils.convertIntermediateCodes(generatorTemplate.generator(payload, generatorTemplate.option));
+      const extraStatements = generatorTemplate.generator(payload, generatorTemplate.option);
       statements.push(...extraStatements);
     });
     return statements;

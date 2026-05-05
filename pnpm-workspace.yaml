@@ -5,3 +5,5 @@ onlyBuiltDependencies:
   - esbuild
   - nx
   - unrs-resolver
+overrides:
+  '@himenon/openapi-typescript-code-generator': link:../openapi-typescript-code-generator
