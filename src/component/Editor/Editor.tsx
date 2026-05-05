@@ -1,9 +1,8 @@
+import React from "react";
 import MonacoEditor, { EditorProps as MonacoEditorProps } from "@monaco-editor/react";
 import { ErrorBoundary } from "../ErrorBoundary/ErrorBoundary";
 
-type Element = JSX.IntrinsicElements["div"];
-
-export interface EditorProps extends Element {
+export interface EditorProps extends React.ComponentPropsWithoutRef<"div"> {
   editor: MonacoEditorProps;
 }
 
