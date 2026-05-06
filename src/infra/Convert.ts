@@ -1,6 +1,6 @@
-import * as Api from "@himenon/openapi-typescript-code-generator/dist/api";
-import * as Templates from "@himenon/openapi-typescript-code-generator/dist/templates";
-import type * as Types from "@himenon/openapi-typescript-code-generator/dist/types";
+import * as Api from "@himenon/openapi-typescript-code-generator/api";
+import * as Templates from "@himenon/openapi-typescript-code-generator/templates";
+import type * as Types from "@himenon/openapi-typescript-code-generator/types";
 import * as yaml from "js-yaml";
 
 const EOL = "\n";
@@ -35,7 +35,7 @@ const generateTypeScriptCode = ({ schema, entryPoint, codeGeneratorKind }: Param
     const statements = parser.getOpenApiTypeDefinitionStatements();
     generatorTemplates.forEach((generatorTemplate) => {
       const payload = parser.getCodeGeneratorParamsArray();
-      const extraStatements = Api.TsGenerator.Utils.convertIntermediateCodes(generatorTemplate.generator(payload, generatorTemplate.option));
+      const extraStatements = generatorTemplate.generator(payload, generatorTemplate.option);
       statements.push(...extraStatements);
     });
     return statements;
