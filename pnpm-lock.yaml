@@ -4,16 +4,13 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@himenon/openapi-typescript-code-generator': link:../openapi-typescript-code-generator
-
 importers:
 
   .:
     dependencies:
       '@himenon/openapi-typescript-code-generator':
-        specifier: link:../openapi-typescript-code-generator
-        version: link:../openapi-typescript-code-generator
+        specifier: 2.0.3
+        version: 2.0.3
       '@monaco-editor/react':
         specifier: ^4.7.0
         version: 4.7.0(monaco-editor@0.55.1)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -415,6 +412,10 @@ packages:
   '@gar/promise-retry@1.0.3':
     resolution: {integrity: sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA==}
     engines: {node: ^20.17.0 || >=22.9.0}
+
+  '@himenon/openapi-typescript-code-generator@2.0.3':
+    resolution: {integrity: sha512-rDwsjg74byBmfiTmkhoycX2+dAnu8V5oFrNtvEtVr+/kr6EKV0MUH1nVtBEFcksPdaeBbxi1gHNbRDoZDAkIOQ==}
+    engines: {node: '>=24.0.0'}
 
   '@hutson/parse-repository-url@3.0.2':
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
@@ -1471,6 +1472,9 @@ packages:
 
   '@types/js-yaml@4.0.9':
     resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
+
+  '@types/json-schema@7.0.15':
+    resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
 
   '@types/jsonfile@6.1.4':
     resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
@@ -4881,6 +4885,12 @@ snapshots:
 
   '@gar/promise-retry@1.0.3': {}
 
+  '@himenon/openapi-typescript-code-generator@2.0.3':
+    dependencies:
+      '@types/json-schema': 7.0.15
+      ajv: 8.18.0
+      js-yaml: 4.1.1
+
   '@hutson/parse-repository-url@3.0.2': {}
 
   '@inquirer/ansi@1.0.2': {}
@@ -5894,6 +5904,8 @@ snapshots:
       pretty-format: 30.3.0
 
   '@types/js-yaml@4.0.9': {}
+
+  '@types/json-schema@7.0.15': {}
 
   '@types/jsonfile@6.1.4':
     dependencies:
